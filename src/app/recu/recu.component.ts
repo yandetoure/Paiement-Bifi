@@ -153,14 +153,22 @@ private addTextToPDF(doc: jsPDF) {
     doc.text(this.receiptData.Total + ' FCFA', 80, 160);
 
 
+    const today = new Date().toLocaleDateString('fr-FR');
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text('Date du reçu:', 10, 180);
+    doc.setFont("helvetica", "normal");
+    doc.text(today, 35, 180);
+
     doc.setFontSize(10);
     doc.setFont("helvetica", "bold");
-    doc.text('Signature agent:', 20, 190);
+    doc.text('Signature agent:', 80, 180);
+
     // Ajouter la signature
     const signatureImg = new Image();
     signatureImg.src = 'images/signature.png';
     signatureImg.onload = () => {
-        doc.addImage(signatureImg, 'PNG', 10, 195, 50, 20);
+        doc.addImage(signatureImg, 'PNG', 65, 170, 50, 20);
         doc.save('recu.pdf');
     };
 }
