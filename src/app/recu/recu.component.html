@@ -7,10 +7,10 @@
       {{ loading ? 'Analyse en cours...' : 'Analyser le Reçu' }}
     </button>
     
-    <!-- Affichage du champ pour saisir le nom de l'utilisateur après l'extraction -->
+    <!-- Affichage du champ pour saisir le nom du client après l'extraction -->
     <div *ngIf="receiptData">
       <label for="userName">Nom :</label>
-      <input id="userName" type="text" [(ngModel)]="userName" placeholder="Entrez votre nom" />
+      <input id="userName" type="text" [(ngModel)]="userName" placeholder="Entrez le nom du client" />
     </div>
     
     <!-- Affichage des données extraites -->

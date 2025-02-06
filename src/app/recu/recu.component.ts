@@ -99,7 +99,7 @@ export class RecuComponent {
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
     doc.text('Nom:', 10, 60);
-    doc.text('Nom de client :', 10, 60);
+    doc.setFont("helvetica", "normal");
     doc.text(this.userName || 'Non renseigné', 80, 60);
     
     // Les autres informations extraites
@@ -145,4 +145,5 @@ export class RecuComponent {
 
     doc.save('recu.pdf');
   }
+  
 }
