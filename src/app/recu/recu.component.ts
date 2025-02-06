@@ -72,8 +72,8 @@ export class RecuComponent {
 
   generateReceipt() {
     if (!this.receiptData) {
-      console.error("Aucune donnée de reçu disponible.");
-      return;
+        console.error("Aucune donnée de reçu disponible.");
+        return;
     }
 
     const doc = new jsPDF();
@@ -82,12 +82,21 @@ export class RecuComponent {
     const img = new Image();
     img.src = 'images/logo1.jpeg';
     img.onload = () => {
-      doc.addImage(img, 'JPEG', 80, 10, 50, 20);
-      this.addTextToPDF(doc);
+        doc.addImage(img, 'JPEG', 80, 10, 50, 20);
+        
+        // Ajout du nom de l'entreprise, email et numéro
+        // doc.setFontSize(12);
+        // doc.setFont("helvetica", "normal");
+        // doc.text('BICONSULTING', 140, 15); // Ajustez la position selon besoin
+        // doc.text('diarrabicons@gmail.com', 140, 25);
+        // doc.text('Numéro: +123456789', 60, 35);
+        
+        // Ajouter la signature
+        this.addTextToPDF(doc);
     };
-  }
+}
 
-  private addTextToPDF(doc: jsPDF) {
+private addTextToPDF(doc: jsPDF) {
     if (!this.receiptData) return;
 
     // Titre
@@ -143,7 +152,13 @@ export class RecuComponent {
     doc.setFont("helvetica", "normal");
     doc.text(this.receiptData.Total + ' FCFA', 80, 140);
 
-    doc.save('recu.pdf');
-  }
-  
+    // Ajouter la signature
+    const signatureImg = new Image();
+    signatureImg.src = 'images/signature.png';
+    signatureImg.onload = () => {
+        doc.addImage(signatureImg, 'PNG', 80, 150, 50, 20); // Ajustez les dimensions et la position selon besoin
+        doc.save('recu.pdf');
+    };
+}
+
 }
