@@ -168,7 +168,7 @@ private addTextToPDF(doc: jsPDF) {
     const signatureImg = new Image();
     signatureImg.src = 'images/signature.png';
     signatureImg.onload = () => {
-        doc.addImage(signatureImg, 'PNG', 65, 170, 50, 20);
+        doc.addImage(signatureImg, 'PNG', 75, 180, 50, 20);
         doc.save('recu.pdf');
     };
 }
