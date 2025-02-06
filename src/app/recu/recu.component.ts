@@ -82,14 +82,14 @@ export class RecuComponent {
     const img = new Image();
     img.src = 'images/logo1.jpeg';
     img.onload = () => {
-        doc.addImage(img, 'JPEG', 80, 10, 50, 20);
+        doc.addImage(img, 'JPEG', 10, 10, 50, 20);
         
         // Ajout du nom de l'entreprise, email et numéro
-        // doc.setFontSize(12);
-        // doc.setFont("helvetica", "normal");
-        // doc.text('BICONSULTING', 140, 15); // Ajustez la position selon besoin
-        // doc.text('diarrabicons@gmail.com', 140, 25);
-        // doc.text('Numéro: +123456789', 60, 35);
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "bold");
+        doc.text('BICONSULTING', 140, 15); // Ajustez la position selon besoin
+        doc.text('diarrabicons@gmail.com', 140, 20);
+        doc.text('Numéro: +221 78 705 67 67', 140, 25);
         
         // Ajouter la signature
         this.addTextToPDF(doc);
@@ -101,62 +101,66 @@ private addTextToPDF(doc: jsPDF) {
 
     // Titre
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.text('Détail du Reçu de Paiement', 105, 40, { align: 'center' });
+    doc.setFontSize(18);
+    doc.text('Détail du Reçu de Paiement', 105, 60, { align: 'center' });
     
     // Nom du client
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text('Nom:', 10, 60);
+    doc.text('Nom:', 10, 80);
     doc.setFont("helvetica", "normal");
-    doc.text(this.userName || 'Non renseigné', 80, 60);
+    doc.text(this.userName || 'Non renseigné', 80, 80);
     
     // Les autres informations extraites
     doc.setFont("helvetica", "bold");
-    doc.text('Référence Transaction:', 10, 70);
+    doc.text('Référence Transaction:', 10, 90);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.ReferenceTransaction, 80, 70);
+    doc.text(this.receiptData.ReferenceTransaction, 80, 90);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Date Transaction:', 10, 80);
+    doc.text('Date Transaction:', 10, 100);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.DateTransaction, 80, 80);
+    doc.text(this.receiptData.DateTransaction, 80, 100);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Type Transaction:', 10, 90);
+    doc.text('Type Transaction:', 10, 110);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.TypeTransaction, 80, 90);
+    doc.text(this.receiptData.TypeTransaction, 80, 110);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Référence Facture:', 10, 100);
+    doc.text('Référence Facture:', 10, 120);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.ReferenceFacture, 80, 100);
+    doc.text(this.receiptData.ReferenceFacture, 80, 120);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Numéro Client:', 10, 110);
+    doc.text('Numéro Client:', 10, 130);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.NumeroClient, 80, 110);
+    doc.text(this.receiptData.NumeroClient, 80, 130);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Montant:', 10, 120);
+    doc.text('Montant:', 10, 140);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Montant + ' FCFA', 80, 120);
+    doc.text(this.receiptData.Montant + ' FCFA', 80, 140);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Frais:', 10, 130);
+    doc.text('Frais:', 10, 150);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Frais + ' FCFA', 80, 130);
+    doc.text(this.receiptData.Frais + ' FCFA', 80, 150);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Total:', 10, 140);
+    doc.text('Total:', 10, 160);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Total + ' FCFA', 80, 140);
+    doc.text(this.receiptData.Total + ' FCFA', 80, 160);
 
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text('Signature agent:', 20, 190);
     // Ajouter la signature
     const signatureImg = new Image();
     signatureImg.src = 'images/signature.png';
     signatureImg.onload = () => {
-        doc.addImage(signatureImg, 'PNG', 80, 150, 50, 20); // Ajustez les dimensions et la position selon besoin
+        doc.addImage(signatureImg, 'PNG', 10, 195, 50, 20);
         doc.save('recu.pdf');
     };
 }
