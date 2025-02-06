@@ -1,45 +1,44 @@
 <div class="container mt-4">
-    <h1>Téléversement de reçu Wizall</h1>
-    <input type="file" (change)="onFileChange($event)" accept="image/*" />
-    <button (click)="onUpload()" [disabled]="!file">Téléverser et générer le reçu</button>
-  
-    <div *ngIf="loading" class="loading">Chargement...</div>
-  
-    <div *ngIf="receiptData" class="card p-4 shadow mt-4">
-      <h3 class="text-center">Détail de la Facture</h3>
-  
-      <div class="mb-4">
-        <h5><strong>Agent :</strong> {{ receiptData['Agent'] }}</h5>
-        <h5><strong>Tel :</strong> {{ receiptData['Tel'] }}</h5>
-        <p><strong>Date :</strong> {{ receiptData['Date'] }}</p>
-      </div>
-  
-      <div class="mb-4">
-        <h5><strong>Bénéficiaire</strong></h5>
-        <p><strong>Code :</strong> {{ receiptData['Code'] }}</p>
-        <p><strong>Commentaire :</strong> {{ receiptData['Commentaire'] }}</p>
-      </div>
-  
-      <div class="mb-4">
-        <h5><strong>Transaction</strong></h5>
-        <p><strong>ID Transaction :</strong> {{ receiptData.TransactionId }}</p>
-        <p><strong>Montant :</strong> {{ receiptData['Montant'] | currency:'CFA' }}</p>
-        <p><strong>Frais (1%) :</strong> {{ receiptData['Frais'] | currency:'CFA' }}</p>
-        <h4><strong>Total :</strong> {{ receiptData['Total'] | currency:'CFA' }}</h4>
-      </div>
-  
-      <div class="text-end mt-4">
-        <h4>Signature Agent</h4>
-        <h4>Signature Client</h4>
-      </div>
-  
-      <p class="mt-4">RECU COLLECTE WIZALL MONEY - BENEFICIAIRE</p>
-      <p>Tout reçu émis lors de la transaction, relève de la relation entre le Distributeur et le client.</p>
-      <p>Service client : 00 221 33 864 99 00 (Lundi au Vendredi: 8h - 20h / Weekend et Jours Fériés: 9h30 - 17h30)</p>
-      <p>Conditions générales d'utilisations disponibles sur www.wizall.com/cg</p>
-      <p>Wizall Sénégal est un distributeur de monnaie électronique pour le compte de la Banque Atlantique</p>
-  
-      <button (click)="generateReceipt()" class="btn btn-primary mt-3">Télécharger le reçu PDF</button>
+  <h1>Téléversement de reçu Wizall</h1>
+  <input type="file" (change)="onFileChange($event)" accept="image/*" />
+  <button (click)="onUpload()" [disabled]="!file">Téléverser et générer le reçu</button>
+
+  <div *ngIf="loading" class="loading">Chargement...</div>
+
+  <div *ngIf="receiptData" class="card p-4 shadow mt-4">
+    <h3 class="text-center">Détail de la Facture</h3>
+
+    <div class="mb-4">
+      <h5><strong>Agent :</strong> {{ receiptData['Agent'] }}</h5>
+      <h5><strong>Tel :</strong> {{ receiptData['Tel'] }}</h5>
+      <p><strong>Date :</strong> {{ receiptData['Date'] }}</p>
     </div>
+
+    <div class="mb-4">
+      <h5><strong>Bénéficiaire</strong></h5>
+      <p><strong>Code :</strong> {{ receiptData['Code'] }}</p>
+      <p><strong>Commentaire :</strong> {{ receiptData['Commentaire'] }}</p>
+    </div>
+
+    <div class="mb-4">
+      <h5><strong>Transaction</strong></h5>
+      <p><strong>ID Transaction :</strong> {{ receiptData.TransactionId }}</p>
+      <p><strong>Montant :</strong> {{ receiptData['Montant'] | currency:'CFA' }}</p>
+      <p><strong>Frais (1%) :</strong> {{ receiptData['Frais'] | currency:'CFA' }}</p>
+      <h4><strong>Total :</strong> {{ receiptData['Total'] | currency:'CFA' }}</h4>
+    </div>
+
+    <div class="text-end mt-4">
+      <h4>Signature Agent</h4>
+      <h4>Signature Client</h4>
+    </div>
+
+    <p class="mt-4">RECU COLLECTE WIZALL MONEY - BENEFICIAIRE</p>
+    <p>Tout reçu émis lors de la transaction, relève de la relation entre le Distributeur et le client.</p>
+    <p>Service client : 00 221 33 864 99 00 (Lundi au Vendredi: 8h - 20h / Weekend et Jours Fériés: 9h30 - 17h30)</p>
+    <p>Conditions générales d'utilisations disponibles sur www.wizall.com/cg</p>
+    <p>Wizall Sénégal est un distributeur de monnaie électronique pour le compte de la Banque Atlantique</p>
+
+    <button (click)="generateReceipt()" class="btn btn-primary mt-3">Télécharger le reçu PDF</button>
   </div>
-  
+</div>

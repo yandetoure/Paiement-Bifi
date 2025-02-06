@@ -97,7 +97,7 @@ export class ReceiptComponent {
 
     // Ajouter un logo
     const img = new Image();
-    img.src = 'images/logo.png'; // Chemin local ou URL absolue
+    img.src = 'images/logo5.jpeg'; // Chemin local ou URL absolue
     img.onload = () => {
       doc.addImage(img, 'PNG', 80, 10, 50, 20);
       this.addTextToPDF(doc);
@@ -117,11 +117,11 @@ export class ReceiptComponent {
     doc.setFont("helvetica", "normal");
     doc.text(this.receiptData.Agent, 50, 60);
 
-    // doc.setFontSize(12);
-    // doc.setFont("helvetica", "bold");
-    // doc.text('Tel:', 10, 60);
-    // doc.setFont("helvetica", "normal");
-    // doc.text(this.receiptData.Tel, 50, 60);
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text('Tel:', 10, 60);
+    doc.setFont("helvetica", "normal");
+    doc.text(this.receiptData.Tel, 50, 60);
 
     doc.setFont("helvetica", "bold");
     doc.text('Date:', 10, 70);
@@ -142,10 +142,6 @@ export class ReceiptComponent {
     doc.text(`Frais: ${this.receiptData.Frais} FCFA`, 10, 160);
     doc.setFont("helvetica", "bold");
     doc.text(`Total: ${this.receiptData.Total} FCFA`, 10, 170);
-
-    doc.setFont("helvetica", "bold");
-    doc.text('Signature Agent', 10, 190);
-    doc.text('Signature Client', 10, 200);
 
     doc.save('reçu.pdf');
   }

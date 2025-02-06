@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Extraction de Données du Reçu</h2>
+    
+    <!-- Sélection de l'image du reçu -->
+    <input type="file" (change)="onFileChange($event)" accept="image/*" />
+    <button (click)="onUpload()" [disabled]="!file || loading">
+      {{ loading ? 'Analyse en cours...' : 'Analyser le Reçu' }}
+    </button>
+    
+    <!-- Affichage du champ pour saisir le nom de l'utilisateur après l'extraction -->
+    <div *ngIf="receiptData">
+      <label for="userName">Nom :</label>
+      <input id="userName" type="text" [(ngModel)]="userName" placeholder="Entrez votre nom" />
+    </div>
+    
+    <!-- Affichage des données extraites -->
+    <div *ngIf="receiptData" class="receipt">
+      <h3>Informations Extraites</h3>
+      <p><strong>Référence Transaction :</strong> {{ receiptData.ReferenceTransaction }}</p>
+      <p><strong>Date de la Transaction :</strong> {{ receiptData.DateTransaction }}</p>
+      <p><strong>Type de Transaction :</strong> {{ receiptData.TypeTransaction }}</p>
+      <p><strong>Référence Facture :</strong> {{ receiptData.ReferenceFacture }}</p>
+      <p><strong>Numéro Client :</strong> {{ receiptData.NumeroClient }}</p>
+      <p><strong>Montant :</strong> {{ receiptData.Montant }}</p>
+      <p><strong>Frais :</strong> {{ receiptData.Frais }}</p>
+      <p><strong>Total :</strong> {{ receiptData.Total }} Fcfa</p>
+    
+      <!-- Bouton pour générer et télécharger le PDF -->
+      <button (click)="generateReceipt()">Générer PDF</button>
+    </div>
+  </div>
+  
