@@ -116,14 +116,14 @@ export class ReceiptComponent {
     if (!this.receiptData) return;
 
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.text('Détail de la Facture', 105, 40, { align: 'center' });
+    doc.setFontSize(18);
+    doc.text('Détail du Reçu de Paiement', 105, 60, { align: 'center' });
 
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text('Agent:', 10, 60);
+    doc.text('Agent:', 10, 90);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Agent, 10, 60);
+    doc.text(this.receiptData.Agent, 30, 90);
 
     // doc.setFontSize(12);
     // doc.setFont("helvetica", "bold");
@@ -131,16 +131,16 @@ export class ReceiptComponent {
     // doc.setFont("helvetica", "normal");
     // doc.text(this.receiptData.Tel, 10, 60);
 
-    doc.setFont("helvetica", "bold");
-    doc.text('Date:', 10, 70);
-    doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Date, 10, 70);
+    // doc.setFont("helvetica", "bold");
+    // doc.text('Date:', 10, 70);
+    // doc.setFont("helvetica", "normal");
+    // doc.text(this.receiptData.Date, 10, 70);
 
     doc.setFont("helvetica", "bold");
-    doc.text('Bénéficiaire:', 10, 90);
+    doc.text('Bénéficiaire:', 10, 100);
     doc.setFont("helvetica", "normal");
-    doc.text(`Code: ${this.receiptData.Code}`, 10, 100);
-    doc.text(`Commentaire: ${this.receiptData.Commentaire}`, 10, 110);
+    doc.text(`Code: ${this.receiptData.Code}`, 10, 110);
+    doc.text(`Commentaire: ${this.receiptData.Commentaire}`, 10, 120);
 
     doc.setFont("helvetica", "bold");
     doc.text('Transaction:', 10, 130);
@@ -155,19 +155,19 @@ export class ReceiptComponent {
     const today = new Date().toLocaleDateString('fr-FR');
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.text('Date du reçu:', 10, 180);
+    doc.text('Date du reçu:', 10, 200);
     doc.setFont("helvetica", "normal");
-    doc.text(today, 35, 180);
+    doc.text(today, 35, 200);
 
     doc.setFontSize(10);
     doc.setFont("helvetica", "bold");
-    doc.text('Signature agent:', 80, 180);
+    doc.text('Signature agent:', 80, 200);
 
     // Ajouter la signature
     const signatureImg = new Image();
     signatureImg.src = 'images/signature.png';
     signatureImg.onload = () => {
-        doc.addImage(signatureImg, 'PNG', 75, 180, 50, 20);
+        doc.addImage(signatureImg, 'PNG', 75, 200, 50, 20);
         doc.save('reçu.pdf');
     };
     }
