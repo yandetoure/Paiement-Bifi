@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Téléversement de reçu</h1>
+  <h2>Téléversement de reçu</h2>
   
   <!-- Sélection de l'image du reçu -->
   <input type="file" (change)="onFileChange($event)" accept="image/*" />
@@ -39,19 +39,6 @@
       <p><strong>Frais (1%) :</strong> {{ receiptData['Frais'] | currency:'CFA' }}</p>
       <h4><strong>Total :</strong> {{ receiptData['Total'] | currency:'CFA' }}</h4>
     </div>
-
-    <!-- Signatures -->
-    <div class="text-end mt-4">
-      <h4>Signature Agent</h4>
-      <h4>Signature Client</h4>
-    </div>
-
-    <!-- Informations supplémentaires -->
-    <p class="mt-4">RECU COLLECTE WIZALL MONEY - BENEFICIAIRE</p>
-    <p>Tout reçu émis lors de la transaction, relève de la relation entre le Distributeur et le client.</p>
-    <p>Service client : 00 221 33 864 99 00 (Lundi au Vendredi: 8h - 20h / Weekend et Jours Fériés: 9h30 - 17h30)</p>
-    <p>Conditions générales d'utilisations disponibles sur www.wizall.com/cg</p>
-    <p>Wizall Sénégal est un distributeur de monnaie électronique pour le compte de la Banque Atlantique</p>
 
     <!-- Bouton pour télécharger le reçu -->
     <button (click)="generateReceipt()" class="btn-main">Télécharger le reçu PDF</button>

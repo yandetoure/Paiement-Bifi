@@ -92,17 +92,25 @@ export class ReceiptComponent {
       console.error("Aucune donnée de reçu disponible.");
       return;
     }
+   const doc = new jsPDF();
 
-    const doc = new jsPDF();
-
-    // Ajouter un logo
+    // Ajouter un logo (optionnel)
     const img = new Image();
-    img.src = 'images/logo5.jpeg'; // Chemin local ou URL absolue
+    img.src = 'images/logo1.jpeg';
     img.onload = () => {
-      doc.addImage(img, 'PNG', 80, 10, 50, 20);
-      this.addTextToPDF(doc);
+        doc.addImage(img, 'JPEG', 10, 10, 50, 20);
+        
+        // Ajout du nom de l'entreprise, email et numéro
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "bold");
+        doc.text('BICONSULTING', 140, 15); // Ajustez la position selon besoin
+        doc.text('diarrabicons@gmail.com', 140, 20);
+        doc.text('Numéro: +221 78 705 67 67', 140, 25);
+        
+        // Ajouter la signature
+        this.addTextToPDF(doc);
     };
-  }
+}
 
   private addTextToPDF(doc: jsPDF) {
     if (!this.receiptData) return;
@@ -115,18 +123,18 @@ export class ReceiptComponent {
     doc.setFont("helvetica", "bold");
     doc.text('Agent:', 10, 60);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Agent, 50, 60);
+    doc.text(this.receiptData.Agent, 10, 60);
 
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.text('Tel:', 10, 60);
-    doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Tel, 50, 60);
+    // doc.setFontSize(12);
+    // doc.setFont("helvetica", "bold");
+    // doc.text('Tel:', 10, 60);
+    // doc.setFont("helvetica", "normal");
+    // doc.text(this.receiptData.Tel, 10, 60);
 
     doc.setFont("helvetica", "bold");
     doc.text('Date:', 10, 70);
     doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Date, 50, 70);
+    doc.text(this.receiptData.Date, 10, 70);
 
     doc.setFont("helvetica", "bold");
     doc.text('Bénéficiaire:', 10, 90);
@@ -143,6 +151,24 @@ export class ReceiptComponent {
     doc.setFont("helvetica", "bold");
     doc.text(`Total: ${this.receiptData.Total} FCFA`, 10, 170);
 
-    doc.save('reçu.pdf');
-  }
+
+    const today = new Date().toLocaleDateString('fr-FR');
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text('Date du reçu:', 10, 180);
+    doc.setFont("helvetica", "normal");
+    doc.text(today, 35, 180);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text('Signature agent:', 80, 180);
+
+    // Ajouter la signature
+    const signatureImg = new Image();
+    signatureImg.src = 'images/signature.png';
+    signatureImg.onload = () => {
+        doc.addImage(signatureImg, 'PNG', 75, 180, 50, 20);
+        doc.save('reçu.pdf');
+    };
+    }
 }

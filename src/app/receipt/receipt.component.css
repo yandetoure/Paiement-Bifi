@@ -1,40 +1,40 @@
 .container {
-  max-width: 800px;
-  margin: auto;
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  background-color: #fff;
 }
 
-h1 {
-  text-align: center;
+h2 {
   color: #333;
   margin-bottom: 20px;
+  text-align: center;
 }
 
-h3 {
-  margin-bottom: 20px;
-}
-
-.card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+input[type="file"] {
+  margin: 15px 0;
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 button {
   background-color: #007bff;
   color: white;
-  padding: 12px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
-  width: 100%;
+  margin-top: 10px;
   font-size: 16px;
+  width: 100%;
 }
 
 button:disabled {
@@ -45,51 +45,44 @@ button:hover {
   background-color: #0056b3;
 }
 
-.loading {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  color: #007bff;
-}
-
 strong {
   color: #007bff;
 }
 
-.mb-4 {
-  margin-bottom: 20px;
+.receipt-field {
+  margin-bottom: 15px;
 }
 
-.text-end {
-  text-align: end;
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
 }
 
-.mt-4 {
-  margin-top: 20px;
-}
-
-p {
-  margin: 10px 0;
-  color: #555;
-}
-
-h4 {
-  margin-top: 20px;
-}
-
-h5 {
-  margin: 5px 0;
-}
-
-
-input[type="file"] {
-  margin: 15px 0;
-  font-size: 16px;
-  display: block;
+.input-field {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
+  margin-top: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
+}
+
+.input-field:disabled {
+  background-color: #f9f9f9;
+  color: #ccc;
+}
+
+.btn-generate {
+  background-color: #28a745;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.btn-generate:hover {
+  background-color: #218838;
 }
 
 .btn-redirect{
