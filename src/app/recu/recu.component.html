@@ -1,32 +1,63 @@
 <div class="container">
-    <h2>Extraction de Données du Reçu</h2>
-    
-    <!-- Sélection de l'image du reçu -->
-    <input type="file" (change)="onFileChange($event)" accept="image/*" />
-    <button (click)="onUpload()" [disabled]="!file || loading">
-      {{ loading ? 'Analyse en cours...' : 'Analyser le Reçu' }}
-    </button>
-    
-    <!-- Affichage du champ pour saisir le nom du client après l'extraction -->
-    <div *ngIf="receiptData">
-      <label for="userName">Nom :</label>
-      <input id="userName" type="text" [(ngModel)]="userName" placeholder="Entrez le nom du client" />
-    </div>
-    
-    <!-- Affichage des données extraites -->
-    <div *ngIf="receiptData" class="receipt">
-      <h3>Informations Extraites</h3>
-      <p><strong>Référence Transaction :</strong> {{ receiptData.ReferenceTransaction }}</p>
-      <p><strong>Date de la Transaction :</strong> {{ receiptData.DateTransaction }}</p>
-      <p><strong>Type de Transaction :</strong> {{ receiptData.TypeTransaction }}</p>
-      <p><strong>Référence Facture :</strong> {{ receiptData.ReferenceFacture }}</p>
-      <p><strong>Numéro Client :</strong> {{ receiptData.NumeroClient }}</p>
-      <p><strong>Montant :</strong> {{ receiptData.Montant }}</p>
-      <p><strong>Frais :</strong> {{ receiptData.Frais }}</p>
-      <p><strong>Total :</strong> {{ receiptData.Total }} Fcfa</p>
-    
-      <!-- Bouton pour générer et télécharger le PDF -->
-      <button (click)="generateReceipt()">Générer PDF</button>
-    </div>
+  <h2>Extraction de Données du Reçu</h2>
+  
+  <!-- Sélection de l'image du reçu -->
+  <input type="file" (change)="onFileChange($event)" accept="image/*" class="file-input" />
+  <button (click)="onUpload()" [disabled]="!file || loading" class="btn-upload">
+    {{ loading ? 'Analyse en cours...' : 'Analyser le Reçu' }}
+  </button>
+  
+  <!-- Affichage du champ pour saisir le nom du client après l'extraction -->
+  <div *ngIf="receiptData">
+    <label for="userName" class="label">Nom :</label>
+    <input id="userName" type="text" [(ngModel)]="userName" placeholder="Entrez le nom du client" class="input-field" />
   </div>
   
+  <!-- Affichage des données extraites -->
+  <div *ngIf="receiptData" class="receipt">
+    <h3>Informations Extraites</h3>
+    
+    <div class="receipt-field">
+      <label><strong>Référence Transaction :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.ReferenceTransaction" class="input-field" />
+    </div>
+    
+    <div class="receipt-field">
+      <label><strong>Date de la Transaction :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.DateTransaction" class="input-field" />
+    </div>
+    
+    <div class="receipt-field">
+      <label><strong>Type de Transaction :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.TypeTransaction" class="input-field" />
+    </div>
+    
+    <div class="receipt-field">
+      <label><strong>Référence Facture :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.ReferenceFacture" class="input-field" />
+    </div>
+    
+    <div class="receipt-field">
+      <label><strong>Numéro Client :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.NumeroClient" class="input-field" />
+    </div>
+    
+    <div class="receipt-field">
+      <label><strong>Montant :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.Montant" (ngModelChange)="updateCalculations()" class="input-field" />
+    </div>
+
+    <div class="receipt-field">
+      <label><strong>Frais :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.Frais" (ngModelChange)="updateCalculations()" class="input-field" />
+    </div>
+
+    <div class="receipt-field">
+      <label><strong>Total :</strong></label>
+      <input type="text" [(ngModel)]="receiptData.Total" class="input-field" disabled />
+    </div>
+  
+    <!-- Bouton pour générer et télécharger le PDF -->
+    <button (click)="generateReceipt()" class="btn-generate">Générer PDF</button>
+  </div>
+</div>

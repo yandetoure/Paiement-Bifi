@@ -17,6 +17,7 @@ export class RecuComponent {
   receiptData: any = null;
   userName: string = ''; // Champ pour saisir le nom de l'utilisateur
 
+  
   async onFileChange(event: any) {
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
@@ -57,6 +58,14 @@ export class RecuComponent {
       Frais: this.calculerFrais(montant), // Calculer les frais ici
       Total: this.calculerTotal(montant), // Calculer le total ici
     };
+  }
+  updateCalculations() {
+    // Recalculer les frais et le total si les données sont modifiées manuellement
+    const montant = parseFloat(this.receiptData.Montant.replace(/\D/g, '')) || 0;
+    
+    // Assure-toi que le résultat est une chaîne de caractères
+    this.receiptData.Frais = this.calculerFrais(montant.toString()); // Passer le montant comme string
+    this.receiptData.Total = this.calculerTotal(montant.toString()); // Passer le montant comme string
   }
   
   calculerFrais(montant: string) {
@@ -169,7 +178,7 @@ private addTextToPDF(doc: jsPDF) {
     signatureImg.src = 'images/signature.png';
     signatureImg.onload = () => {
         doc.addImage(signatureImg, 'PNG', 75, 180, 50, 20);
-        doc.save('recu.pdf');
+        doc.save('reçu.pdf');
     };
 }
 

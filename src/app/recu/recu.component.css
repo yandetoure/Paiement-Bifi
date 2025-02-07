@@ -1,41 +1,86 @@
 .container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #fff;
-  }
-  
-  h2 {
-    color: #333;
-  }
-  
-  input[type="file"] {
-    margin: 15px 0;
-    font-size: 16px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 16px;
-    margin: 10px;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-  }
-  
-  
-  strong {
-    color: #007bff;
-  }
-  
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  background-color: #fff;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+input[type="file"] {
+  margin: 15px 0;
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+strong {
+  color: #007bff;
+}
+
+.receipt-field {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.input-field:disabled {
+  background-color: #f9f9f9;
+  color: #ccc;
+}
+
+.btn-generate {
+  background-color: #28a745;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.btn-generate:hover {
+  background-color: #218838;
+}
