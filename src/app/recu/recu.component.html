@@ -6,6 +6,10 @@
   <button (click)="onUpload()" [disabled]="!file || loading" class="btn-upload">
     {{ loading ? 'Analyse en cours...' : 'Analyser le Reçu' }}
   </button>
+
+  <!-- Bouton pour rediriger vers une autre page -->
+<button class="btn-redirect"><a href="/receipt">Extraire les informations du reçu depuis un autre format</a></button>
+
   
   <!-- Affichage du champ pour saisir le nom du client après l'extraction -->
   <div *ngIf="receiptData">

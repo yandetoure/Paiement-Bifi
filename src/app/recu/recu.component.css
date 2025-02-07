@@ -84,3 +84,11 @@ strong {
 .btn-generate:hover {
   background-color: #218838;
 }
+
+.btn-redirect{
+  a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
