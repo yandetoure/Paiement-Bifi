@@ -15,7 +15,7 @@ export class RecuComponent {
   file: File | null = null;
   loading = false;
   receiptData: any = null;
-  userName: string = ''; // Champ pour saisir le nom de l'utilisateur
+  userName: string = '';
 
   
   async onFileChange(event: any) {
@@ -28,7 +28,7 @@ export class RecuComponent {
     if (!this.file) return;
     
     this.loading = true;
-    const worker = await createWorker('fra'); // OCR en français
+    const worker = await createWorker('fra');
 
     const image = URL.createObjectURL(this.file);
     const { data } = await worker.recognize(image);
@@ -36,6 +36,16 @@ export class RecuComponent {
 
     this.receiptData = this.extractData(data.text);
     this.loading = false;
+  }
+  generateInvoiceNumber(): string {
+    const now = new Date();
+    const year = now.getFullYear().toString().slice(-2); 
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hour = now.getHours().toString().padStart(2, '0');
+    const minute = now.getMinutes().toString().padStart(2, '0');
+  
+    return `NR${year}${month}${day}${hour}${minute}`;
   }
 
   extractData(text: string) {
@@ -87,7 +97,6 @@ export class RecuComponent {
 
     const doc = new jsPDF();
 
-    // Ajouter un logo (optionnel)
     const img = new Image();
     img.src = 'images/logo1.jpeg';
     img.onload = () => {
@@ -96,7 +105,7 @@ export class RecuComponent {
         // Ajout du nom de l'entreprise, email et numéro
         doc.setFontSize(10);
         doc.setFont("helvetica", "bold");
-        doc.text('BICONSULTING', 140, 15); // Ajustez la position selon besoin
+        doc.text('BICONSULTING', 140, 15);
         doc.text('diarrabicons@gmail.com', 140, 20);
         doc.text('Numéro: +221 78 705 67 67', 140, 25);
         
@@ -111,7 +120,13 @@ private addTextToPDF(doc: jsPDF) {
     // Titre
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.text('Détail du Reçu de Paiement', 105, 60, { align: 'center' });
+    doc.text('Détail du Reçu de Paiement', 105, 55, { align: 'center' });
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    const invoiceNumber = this.generateInvoiceNumber();
+    doc.text('Numéro de facture:' , 10, 70);
+    doc.text(`${invoiceNumber}`, 80, 70);
     
     // Nom du client
     doc.setFontSize(12);

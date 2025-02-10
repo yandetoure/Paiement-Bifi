@@ -52,6 +52,18 @@ export class ReceiptComponent {
     return text;
   }
 
+  generateInvoiceNumber(): string {
+    const now = new Date();
+    const year = now.getFullYear().toString();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hour = now.getHours().toString().padStart(2, '0');
+    const minute = now.getMinutes().toString().padStart(2, '0');
+  
+    return `NR${year}${month}${day}${hour}${minute}`;
+  }
+  
+
   extractReceiptData(text: string) {
     const lines = text.split('\n');
     const data: Partial<ReceiptData> = {};
@@ -103,11 +115,10 @@ export class ReceiptComponent {
         // Ajout du nom de l'entreprise, email et numéro
         doc.setFontSize(10);
         doc.setFont("helvetica", "bold");
-        doc.text('BICONSULTING', 140, 15); // Ajustez la position selon besoin
+        doc.text('BICONSULTING', 140, 15);
         doc.text('diarrabicons@gmail.com', 140, 20);
         doc.text('Numéro: +221 78 705 67 67', 140, 25);
         
-        // Ajouter la signature
         this.addTextToPDF(doc);
     };
 }
@@ -118,6 +129,9 @@ export class ReceiptComponent {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
     doc.text('Détail du Reçu de Paiement', 105, 60, { align: 'center' });
+
+    const invoiceNumber = this.generateInvoiceNumber();
+    doc.text(`Numéro de facture: ${invoiceNumber}`, 110, 60);
 
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
