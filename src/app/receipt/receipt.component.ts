@@ -54,7 +54,7 @@ export class ReceiptComponent {
 
   generateInvoiceNumber(): string {
     const now = new Date();
-    const year = now.getFullYear().toString();
+    const year = now.getFullYear().toString().slice(-2); 
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     const day = now.getDate().toString().padStart(2, '0');
     const hour = now.getHours().toString().padStart(2, '0');
@@ -130,8 +130,11 @@ export class ReceiptComponent {
     doc.setFontSize(18);
     doc.text('Détail du Reçu de Paiement', 105, 60, { align: 'center' });
 
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
     const invoiceNumber = this.generateInvoiceNumber();
-    doc.text(`Numéro de facture: ${invoiceNumber}`, 110, 60);
+    doc.text('Numéro de facture:' , 10, 70);
+    doc.text(`${invoiceNumber}`, 80, 70); 
 
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
