@@ -95,7 +95,7 @@ export class ReceiptComponent {
 
       // Formatter avec séparateur de milliers
   const formatter = new Intl.NumberFormat('fr-FR');
-  
+
     data.Frais = frais.toFixed(2);
     data.Total = total.toFixed(2);
 
@@ -167,9 +167,9 @@ export class ReceiptComponent {
     doc.setFont("helvetica", "normal");
     doc.text(`ID Transaction: ${this.receiptData.TransactionId}`, 10, 140);
     doc.text(`Montant: ${this.receiptData.Montant} FCFA`, 10, 150);
-    doc.text(`Frais: ${this.receiptData.Frais} FCFA`, 10, 160);
+    doc.text(`Frais: ${this.receiptData.Frais.replace(/\s/g, String.fromCharCode(160))} FCFA`, 10, 160);
     doc.setFont("helvetica", "bold");
-    doc.text(`Total: ${this.receiptData.Total} FCFA`, 10, 170);
+    doc.text(`Total: ${this.receiptData.Total.replace(/\s/g, String.fromCharCode(160)) } FCFA`, 10, 170);
 
 
     const today = new Date().toLocaleDateString('fr-FR');
