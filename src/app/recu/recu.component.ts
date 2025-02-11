@@ -80,14 +80,20 @@ export class RecuComponent {
   
   calculerFrais(montant: string) {
     const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0; // Convertir le montant en nombre
-    return (montantNum * 0.01).toFixed(2); // Calculer 1 % du montant
-  }
+    return this.formatMontant(montantNum * 0.01);  }
   
   calculerTotal(montant: string) {
     const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0; // Convertir le montant en nombre
     const fraisNum = parseFloat(this.calculerFrais(montant)) || 0; // Récupérer les frais calculés
-    return (montantNum + fraisNum).toFixed(2); // Retourner le total
-  }
+    return this.formatMontant(montantNum + fraisNum);  }
+
+  // 🔹 Méthode pour formater les nombres avec un espace comme séparateur de milliers
+formatMontant(montant: number): string {
+  return new Intl.NumberFormat('fr-FR', { 
+    minimumFractionDigits: 0, 
+    maximumFractionDigits: 0 
+  }).format(montant);
+}
 
   generateReceipt() {
     if (!this.receiptData) {
@@ -168,13 +174,13 @@ private addTextToPDF(doc: jsPDF) {
 
     doc.setFont("helvetica", "bold");
     doc.text('Frais:', 10, 150);
-    doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Frais + ' FCFA', 80, 150);
+    doc.setFont("helvetica", "normal"); 
+    doc.text(this.receiptData.Frais.replace(/\s/g, String.fromCharCode(160))  + ' FCFA', 80, 150);
 
     doc.setFont("helvetica", "bold");
     doc.text('Total:', 10, 160);
-    doc.setFont("helvetica", "normal");
-    doc.text(this.receiptData.Total + ' FCFA', 80, 160);
+    doc.setFont("helvetica", "normal"); 
+    doc.text(this.receiptData.Total.replace(/\s/g, String.fromCharCode(160)) + ' FCFA', 80, 160);
 
 
     const today = new Date().toLocaleDateString('fr-FR');

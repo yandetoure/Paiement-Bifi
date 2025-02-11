@@ -91,8 +91,11 @@ export class ReceiptComponent {
     // Calcul des frais et du total
     const montant = Number(data.Montant || 0);
     const frais = montant * 0.01;  // 1% du montant
-    const total = montant + frais;
+    const total = Math.round(montant + frais); 
 
+      // Formatter avec séparateur de milliers
+  const formatter = new Intl.NumberFormat('fr-FR');
+  
     data.Frais = frais.toFixed(2);
     data.Total = total.toFixed(2);
 
