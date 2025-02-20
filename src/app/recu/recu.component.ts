@@ -196,9 +196,9 @@ private addTextToPDF(doc: jsPDF) {
 
     // Ajouter la signature
     const signatureImg = new Image();
-    signatureImg.src = 'images/signature.png';
+    signatureImg.src = 'images/signature.jpeg';
     signatureImg.onload = () => {
-        doc.addImage(signatureImg, 'PNG', 75, 180, 50, 20);
+        doc.addImage(signatureImg, 'JPEG', 75, 180, 60, 30);
         doc.save('reçu.pdf');
     };
 }

@@ -185,9 +185,9 @@ export class ReceiptComponent {
 
     // Ajouter la signature
     const signatureImg = new Image();
-    signatureImg.src = 'images/signature.png';
+    signatureImg.src = 'images/signature.jpeg';
     signatureImg.onload = () => {
-        doc.addImage(signatureImg, 'PNG', 75, 200, 50, 20);
+        doc.addImage(signatureImg, 'JPEG', 75, 200, 50, 20);
         doc.save('reçu.pdf');
     };
     }
