@@ -186,13 +186,13 @@ private addTextToPDF(doc: jsPDF) {
     const today = new Date().toLocaleDateString('fr-FR');
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.text('Date du reçu:', 10, 180);
+    doc.text('Date du reçu:', 10, 178);
     doc.setFont("helvetica", "normal");
-    doc.text(today, 35, 180);
+    doc.text(today, 35, 178);
 
     doc.setFontSize(10);
     doc.setFont("helvetica", "bold");
-    doc.text('Signature agent:', 80, 180);
+    doc.text('Signature agent:', 80, 178);
 
     // Ajouter la signature
     const signatureImg = new Image();
