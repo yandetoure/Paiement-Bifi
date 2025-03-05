@@ -44,8 +44,8 @@ export class RecuComponent {
     const day = now.getDate().toString().padStart(2, '0');
     const hour = now.getHours().toString().padStart(2, '0');
     const minute = now.getMinutes().toString().padStart(2, '0');
-  
-    return `NR${year}${month}${day}${hour}${minute}`;
+    const second = now.getSeconds().toString().padStart(2, '0'); 
+    return `NR${year}${month}${day}${hour}${minute}${second}`;
   }
 
   extractData(text: string) {
