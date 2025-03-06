@@ -78,22 +78,25 @@ export class RecuComponent {
     this.receiptData.Total = this.calculerTotal(montant.toString()); // Passer le montant comme string
   }
   
-  calculerFrais(montant: string) {
-    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0; // Convertir le montant en nombre
-    return this.formatMontant(montantNum * 0.01);  }
+  calculerFrais(montant: string): string {
+    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;  // Convertir le montant en nombre
+    const frais = montantNum * 0.01;  // Frais calculés à 1% du montant
+    console.log("Frais:", frais);  // Afficher les frais calculés
+    return frais.toFixed(2);  // Retourner les frais formatés à 2 décimales
+  }
   
-  calculerTotal(montant: string) {
-    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0; // Convertir le montant en nombre
-    const fraisNum = parseFloat(this.calculerFrais(montant)) || 0; // Récupérer les frais calculés
-    return this.formatMontant(montantNum + fraisNum);  }
-
-  // 🔹 Méthode pour formater les nombres avec un espace comme séparateur de milliers
-formatMontant(montant: number): string {
-  return new Intl.NumberFormat('fr-FR', { 
-    minimumFractionDigits: 0, 
-    maximumFractionDigits: 0 
-  }).format(montant);
-}
+  calculerTotal(montant: string): string {
+    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;  // Convertir le montant en nombre
+    const fraisNum = parseFloat(this.calculerFrais(montant)) || 0;  // Frais calculés à partir du montant
+    const total = montantNum + fraisNum;  // Calculer le total (Montant + Frais)
+    console.log("Montant:", montantNum, "Frais:", fraisNum, "Total:", total);  // Afficher pour débogage
+    return this.formatMontant(total);  // Retourner le total formaté
+  }
+  
+  formatMontant(montant: number): string {
+    return montant.toFixed(2);  // Formater le montant avec 2 décimales
+  }
+  
 
   generateReceipt() {
     if (!this.receiptData) {
