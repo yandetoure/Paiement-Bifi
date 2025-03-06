@@ -89,12 +89,18 @@ export class RecuComponent {
     const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;  // Convertir le montant en nombre
     const fraisNum = parseFloat(this.calculerFrais(montant)) || 0;  // Frais calculés à partir du montant
     const total = montantNum + fraisNum;  // Calculer le total (Montant + Frais)
-    console.log("Montant:", montantNum, "Frais:", fraisNum, "Total:", total);  // Afficher pour débogage
-    return this.formatMontant(total);  // Retourner le total formaté
+  
+    // Arrondir le total à la hausse
+    const totalArrondi = Math.ceil(total);  // Arrondi à l'entier supérieur
+  
+    console.log("Montant:", montantNum, "Frais:", fraisNum, "Total:", total, "Total Arrondi:", totalArrondi);  // Afficher pour débogage
+    return this.formatMontant(totalArrondi);  // Retourner le total arrondi formaté
   }
   
+  
+  
   formatMontant(montant: number): string {
-    return montant.toFixed(2);  // Formater le montant avec 2 décimales
+    return montant.toFixed(0);  // Formater le montant avec 2 décimales
   }
   
 
