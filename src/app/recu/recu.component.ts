@@ -65,8 +65,8 @@ export class RecuComponent {
       ReferenceFacture: getValueBelow('REFERENCE DE LE FACTURE'),
       NumeroClient: getValueBelow('NUMERO CLIENT'),
       Montant: montant,
-      Frais: this.calculerFrais(montant), // Calculer les frais ici
-      Total: this.calculerTotal(montant), // Calculer le total ici
+      Frais: this.calculerFrais(montant),
+      Total: this.calculerTotal(montant),
     };
   }
   updateCalculations() {
@@ -79,29 +79,26 @@ export class RecuComponent {
   }
   
   calculerFrais(montant: string): string {
-    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;  // Convertir le montant en nombre
-    const frais = montantNum * 0.01;  // Frais calculés à 1% du montant
-    console.log("Frais:", frais);  // Afficher les frais calculés
-    return frais.toFixed(2);  // Retourner les frais formatés à 2 décimales
+    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;
+    const frais = montantNum * 0.01;
+    return this.formatMontant(Math.round(frais));  // Formatté avec séparateur
   }
+  
   
   calculerTotal(montant: string): string {
-    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;  // Convertir le montant en nombre
-    const fraisNum = parseFloat(this.calculerFrais(montant)) || 0;  // Frais calculés à partir du montant
-    const total = montantNum + fraisNum;  // Calculer le total (Montant + Frais)
-  
-    // Arrondir le total à la hausse
-    const totalArrondi = Math.ceil(total);  // Arrondi à l'entier supérieur
-  
-    console.log("Montant:", montantNum, "Frais:", fraisNum, "Total:", total, "Total Arrondi:", totalArrondi);  // Afficher pour débogage
-    return this.formatMontant(totalArrondi);  // Retourner le total arrondi formaté
-  }
+    const montantNum = parseFloat(montant.replace(/\D/g, '')) || 0;
+    const fraisNum = parseFloat(this.calculerFrais(montant).replace(/\s/g, '').replace(/\D/g, '')) || 0;
+    const total = montantNum + fraisNum;
+    const totalArrondi = Math.ceil(total);
+    return this.formatMontant(totalArrondi);
+  }  
   
   
   
   formatMontant(montant: number): string {
-    return montant.toFixed(0);  // Formater le montant avec 2 décimales
+    return new Intl.NumberFormat('fr-FR').format(montant);  // ex. 1 000 ou 1 000 000
   }
+  
   
 
   generateReceipt() {
