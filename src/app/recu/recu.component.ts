@@ -56,8 +56,11 @@ export class RecuComponent {
       return index !== -1 && index + 1 < lines.length ? lines[index + 1] : 'Non trouvé';
     };
   
-    const montant = getValueBelow('MONTANT');
-  
+    let montant = getValueBelow('MONTANT');
+    if (montant.toUpperCase().includes('FCFA')) {
+      montant = montant.replace(/FCFA/i, '').trim();
+    }
+      
     return {
       ReferenceTransaction: getValueBelow('REFERENCE DE LA TRANSACTION'),
       DateTransaction: getValueBelow('DATE DE TRANSACTION'),
